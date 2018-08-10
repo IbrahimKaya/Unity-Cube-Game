@@ -4,9 +4,10 @@ public class GameManager : MonoBehaviour {
 
     bool gameHasEnded = false;
 
-    public float restartDelay = 1f;
+    public float restartDelay = 15;
 
     public GameObject completeLevelUI;
+    public GameObject wastedUI;
 
     public void CompleteLevel()
     {
@@ -18,7 +19,8 @@ public class GameManager : MonoBehaviour {
         if (gameHasEnded == false)
         {
             gameHasEnded = true;
-           Debug.Log("Game Over");
+            wastedUI.SetActive(true);
+            Debug.Log("Game Over");
             Invoke("Restart", restartDelay);
         }
 
@@ -28,6 +30,7 @@ public class GameManager : MonoBehaviour {
 
     void Restart()
     {
+       
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 }
